@@ -1,14 +1,71 @@
-.container{
-    background-color: #9d0bff;
+.container {
+  .to-do-container {
+    min-height: 650px;
+    max-width: 600px;
+    background-color: #000000;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    position: relative;
 
-    .to-do-container{
-        height: 1080px;
-        width: 500px;
-        background-color:#ff5285;
-        margin: auto;
+    .list-container {
+      max-height: 560px;
+      margin: 10px;
 
-        .add-new-task{
-            
+      ::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #f4e7e7;
+        border-radius: 50px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: rgb(126, 121, 121);
+        border-radius: 50px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgb(13, 12, 12);
+      }
+
+      mat-grid-list {
+        width: 450px;
+        margin-left: 30px;
+        max-height: max-content;
+        overflow-x: hidden;
+        overflow-y: auto;
+        height: 550px !important;
+
+        mat-grid-tile {
+          width: 200px !important;
+          height: 150px !important;
         }
+      }
+
+      .card-container {
+        height: 150px;
+        width: 200px;
+        position: relative;
+
+        .close-icon {
+          position: absolute;
+          left: 85%;
+          top: 5%;
+        }
+      }
     }
+
+    .add-container {
+      position: absolute;
+      bottom: 5%;
+
+      .add-new-task {
+        background-color: #aed7ae;
+        font-family: cursive;
+        width: 250px;
+      }
+    }
+  }
 }
