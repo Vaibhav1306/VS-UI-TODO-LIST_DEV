@@ -1,35 +1,60 @@
 <div class="container">
   <div class="to-do-container">
     <div class="list-container">
-      <mat-grid-list cols="4" rowHeight="200px">
-        <mat-grid-tile
-          *ngFor="let card of mock_data; let i = index"
-          [colspan]="2"
-          [rowspan]="1"
-        >
-          <mat-card class="card-container">
-            <span class="close-icon"><mat-icon>close</mat-icon></span>
-            <mat-card-header>
-              <mat-card-title style="font-size: 15px">{{
-                card.head
-              }}</mat-card-title>
-              <mat-card-subtitle style="font-size: 10px"
-                >Task {{ i + 1 }}</mat-card-subtitle
-              >
-            </mat-card-header>
-            <mat-card-content>
-              <p style="font-size: 8px">{{ card.description }}</p>
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button style="font-size: 13px">Done</button>
-              <button mat-button style="font-size: 13px">Edit</button>
-            </mat-card-actions>
-          </mat-card>
-        </mat-grid-tile></mat-grid-list
+      <mat-grid-list
+        cdkDropList
+        cols="4"
+        rowHeight="200px"
+        (cdkDropListDropped)="drop($event)"
+        class="example-list"
       >
+        <div
+          *ngIf="getTaskList().controls.length === 0; else cards"
+          style="color: antiquewhite"
+        >
+          Start adding tasks to the list...
+        </div>
+        <ng-template #cards>
+          <mat-grid-tile
+            *ngFor="
+              let card of getTaskList().controls.slice().reverse();
+              let i = index
+            "
+            [colspan]="2"
+            [rowspan]="1"
+            cdkDrag
+            class="example-box"
+          >
+            <mat-card id="example-custom-placeholder" class="card-container">
+              <button mat-icon-button class="close-icon">
+                <mat-icon>close</mat-icon>
+              </button>
+              <mat-card-header>
+                <mat-card-title style="font-size: 15px">
+                  {{ card.value.taskName }}
+                </mat-card-title>
+                <mat-card-subtitle style="font-size: 10px">{{
+                  card.value.date
+                }}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <p style="font-size: 8px">
+                  {{ card.value.taskDescription }}
+                </p>
+              </mat-card-content>
+              <mat-card-actions>
+                <button mat-button style="font-size: 13px">Done</button>
+                <button mat-button style="font-size: 13px">Edit</button>
+              </mat-card-actions>
+            </mat-card>
+          </mat-grid-tile></ng-template
+        >
+      </mat-grid-list>
     </div>
     <div class="add-container">
-      <button mat-button class="add-new-task">Add New Task</button>
+      <button mat-button class="add-new-task" (click)="onAddNewTask()">
+        Add New Task
+      </button>
     </div>
   </div>
 </div>

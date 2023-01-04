@@ -1,6 +1,6 @@
 .container {
   .to-do-container {
-    min-height: 650px;
+    min-height: 713px;
     max-width: 600px;
     background-color: #000000;
     margin: auto;
@@ -51,8 +51,7 @@
 
         .close-icon {
           position: absolute;
-          left: 85%;
-          top: 5%;
+          left: 75%;
         }
       }
     }
@@ -68,4 +67,51 @@
       }
     }
   }
+}
+
+.example-list {
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.example-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  font-size: 14px;
+}
+
+.example-box:-moz-drag-over {
+  height: 150px;
+  width: 200px;
+  position: relative;
+  .close-icon {
+    position: absolute;
+    left: 75%;
+  }
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+  border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+#example-custom-placeholder {
+  min-height: 60px;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }

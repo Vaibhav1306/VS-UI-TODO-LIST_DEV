@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>Add New Task</h2>
+<form class="form-container" [formGroup]="form">
+  <mat-form-field class="task-name">
+    <mat-label>Task Name</mat-label>
+    <input matInput placeholder="Task name..." formControlName="taskName" />
+  </mat-form-field>
+
+  <mat-form-field class="task-description">
+    <mat-label>Description</mat-label>
+    <textarea
+      matInput
+      placeholder="Task description..."
+      formControlName="taskDescription"
+    ></textarea>
+  </mat-form-field>
+</form>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close (click)="onCancel()">Cancel</button>
+  <button
+    mat-button
+    [disabled]="!this.form.valid"
+    [mat-dialog-close]="true"
+    cdkFocusInitial
+    (click)="onAddTask()"
+  >
+    Add
+  </button>
+</mat-dialog-actions>
